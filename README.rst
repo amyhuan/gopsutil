@@ -2,14 +2,14 @@ gopsutil: psutil for golang
 ==============================
 
 
-.. image:: https://github.com/shirou/gopsutil/workflows/Test/badge.svg
-        :target: https://github.com/shirou/gopsutil/actions?query=workflow%3ATest
+.. image:: https://github.com/amyhuan/gopsutil/workflows/Test/badge.svg
+        :target: https://github.com/amyhuan/gopsutil/actions?query=workflow%3ATest
 
-.. image:: https://coveralls.io/repos/shirou/gopsutil/badge.svg?branch=master
-        :target: https://coveralls.io/r/shirou/gopsutil?branch=master
+.. image:: https://coveralls.io/repos/amyhuan/gopsutil/badge.svg?branch=master
+        :target: https://coveralls.io/r/amyhuan/gopsutil?branch=master
 
-.. image:: https://godoc.org/github.com/shirou/gopsutil?status.svg
-        :target: http://godoc.org/github.com/shirou/gopsutil
+.. image:: https://godoc.org/github.com/amyhuan/gopsutil?status.svg
+        :target: http://godoc.org/github.com/amyhuan/gopsutil
 
 This is a port of psutil (https://github.com/giampaolo/psutil). The challenge is porting all
 psutil functions on some architectures.
@@ -64,8 +64,8 @@ Usage
    import (
        "fmt"
 
-       "github.com/shirou/gopsutil/v3/mem"
-       // "github.com/shirou/gopsutil/mem"  // to use v2
+       "github.com/amyhuan/gopsutil/v3/mem"
+       // "github.com/amyhuan/gopsutil/mem"  // to use v2
    )
 
    func main() {
@@ -101,7 +101,7 @@ You can set an alternative location to :code:`/dev` by setting the :code:`HOST_D
 Documentation
 ------------------------
 
-see http://godoc.org/github.com/shirou/gopsutil
+see http://godoc.org/github.com/amyhuan/gopsutil
 
 Requirements
 -----------------

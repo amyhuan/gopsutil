@@ -9,7 +9,7 @@ import (
 
 	"golang.org/x/sys/unix"
 
-	"github.com/shirou/gopsutil/v3/internal/common"
+	"github.com/amyhuan/gopsutil/v3/internal/common"
 )
 
 func VirtualMemory() (*VirtualMemoryStat, error) {

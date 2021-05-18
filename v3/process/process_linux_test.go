@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/shirou/gopsutil/v3/internal/common"
+	"github.com/amyhuan/gopsutil/v3/internal/common"
 )
 
 func Test_fillFromStatusWithContext(t *testing.T) {

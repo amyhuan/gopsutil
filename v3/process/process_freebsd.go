@@ -3,6 +3,8 @@
 package process
 
 import (
+	"fmt"
+	"io/ioutil"
 	"bytes"
 	"context"
 	"os/exec"
@@ -10,9 +12,9 @@ import (
 	"strconv"
 	"strings"
 
-	cpu "github.com/shirou/gopsutil/v3/cpu"
-	"github.com/shirou/gopsutil/v3/internal/common"
-	net "github.com/shirou/gopsutil/v3/net"
+	cpu "github.com/amyhuan/gopsutil/v3/cpu"
+	"github.com/amyhuan/gopsutil/v3/internal/common"
+	net "github.com/amyhuan/gopsutil/v3/net"
 	"golang.org/x/sys/unix"
 )
 
@@ -106,7 +108,21 @@ func (p *Process) CmdlineSliceWithContext(ctx context.Context) ([]string, error)
 }
 
 func (p *Process) createTimeWithContext(ctx context.Context) (int64, error) {
-	return 0, common.ErrNotImplementedError
+        path := fmt.Sprintf("/proc/%d/status", p.Pid)
+        statBytes, err := ioutil.ReadFile(path)
+        if err != nil {
+                return 0, err
+        }
+        statStr := string(statBytes)
+        fields := strings.Fields(statStr)
+        start := fields[7]
+        startSeconds := strings.Split(start, ",")[0]
+        startInt, err := strconv.ParseInt(startSeconds, 10, 64)
+        if err != nil {
+                return 0, err
+        }
+
+        return startInt * 1000, nil
 }
 
 func (p *Process) ParentWithContext(ctx context.Context) (*Process, error) {
@@ -140,7 +156,7 @@ func (p *Process) StatusWithContext(ctx context.Context) ([]string, error) {
 }
 
 func (p *Process) ForegroundWithContext(ctx context.Context) (bool, error) {
-	// see https://github.com/shirou/gopsutil/issues/596#issuecomment-432707831 for implementation details
+	// see https://github.com/amyhuan/gopsutil/issues/596#issuecomment-432707831 for implementation details
 	pid := p.Pid
 	ps, err := exec.LookPath("ps")
 	if err != nil {

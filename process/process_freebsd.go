@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	cpu "github.com/shirou/gopsutil/cpu"
-	"github.com/shirou/gopsutil/internal/common"
-	net "github.com/shirou/gopsutil/net"
+	cpu "github.com/amyhuan/gopsutil/cpu"
+	"github.com/amyhuan/gopsutil/internal/common"
+	net "github.com/amyhuan/gopsutil/net"
 	"golang.org/x/sys/unix"
 )
 
@@ -140,7 +140,7 @@ func (p *Process) StatusWithContext(ctx context.Context) (string, error) {
 }
 
 func (p *Process) ForegroundWithContext(ctx context.Context) (bool, error) {
-	// see https://github.com/shirou/gopsutil/issues/596#issuecomment-432707831 for implementation details
+	// see https://github.com/amyhuan/gopsutil/issues/596#issuecomment-432707831 for implementation details
 	pid := p.Pid
 	ps, err := exec.LookPath("ps")
 	if err != nil {

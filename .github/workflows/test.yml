@@ -36,13 +36,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        path: ${{ github.workspace }}/src/github.com/shirou/gopsutil
+        path: ${{ github.workspace }}/src/github.com/amyhuan/gopsutil
     - name: Get dependencies
       run: |
-        go get -t github.com/shirou/gopsutil/v3/...
+        go get -t github.com/amyhuan/gopsutil/v3/...
     - name: Test
       run: |
-        go test github.com/shirou/gopsutil/v3/...
+        go test github.com/amyhuan/gopsutil/v3/...
 
   test_v2_gopath:
     env:
@@ -61,7 +61,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        path: ${{ github.workspace }}/src/github.com/shirou/gopsutil
+        path: ${{ github.workspace }}/src/github.com/amyhuan/gopsutil
     - name: Get dependencies
       if: runner.os == 'Windows'
       run: |
@@ -70,10 +70,10 @@ jobs:
         git checkout v0.5.4
         go install -ldflags="-X main.version=v0.5.4" ./cmd/dep
         echo "$Env:GOPATH/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-        cd $Env:GOPATH/src/github.com/shirou/gopsutil
+        cd $Env:GOPATH/src/github.com/amyhuan/gopsutil
         dep ensure
         # exclude v3 from being run with ./...
-        try { rm -ErrorAction:Stop -Recurse -Force $Env:GOPATH/src/github.com/shirou/gopsutil/v3 } catch [System.Management.Automation.ItemNotFoundException] {}
+        try { rm -ErrorAction:Stop -Recurse -Force $Env:GOPATH/src/github.com/amyhuan/gopsutil/v3 } catch [System.Management.Automation.ItemNotFoundException] {}
     - name: Get dependencies
       if: runner.os != 'Windows'
       run: |
@@ -82,10 +82,10 @@ jobs:
           curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
           echo "PATH=$GOPATH/bin:$PATH" >> $GITHUB_PATH
         fi
-        cd $GOPATH/src/github.com/shirou/gopsutil
+        cd $GOPATH/src/github.com/amyhuan/gopsutil
         dep ensure
         # exclude v3 from being run with ./...
-        rm -rf $GOPATH/src/github.com/shirou/gopsutil/v3
+        rm -rf $GOPATH/src/github.com/amyhuan/gopsutil/v3
     - name: Test
       run: |
-        go test github.com/shirou/gopsutil/...
+        go test github.com/amyhuan/gopsutil/...

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/shirou/gopsutil/internal/common"
+	"github.com/amyhuan/gopsutil/internal/common"
 )
 
 func Avg() (*AvgStat, error) {

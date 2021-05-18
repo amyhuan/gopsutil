@@ -5,7 +5,7 @@ package disk
 import (
 	"context"
 
-	"github.com/shirou/gopsutil/internal/common"
+	"github.com/amyhuan/gopsutil/internal/common"
 	"golang.org/x/sys/unix"
 )
 
